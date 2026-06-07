@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silly Market — Арт-маркет 13–14 июня</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #0b0c15;
+    --fg: #f0f0f5;
+    --accent-c: #00f0ff;
+    --accent-m: #ff00aa;
+    --accent-y: #ffe600;
+    --glass: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.12);
+    --hero-image: url("IMG_6132.PNG");
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,240,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  h1, h2, h3, .brand {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(76px, 11vh, 132px) 20px clamp(70px, 10vh, 118px);
+    background: #05060c;
+  }
+
+  .hero::before,
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero::before {
+    z-index: -3;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    filter: saturate(1.08) contrast(1.06);
+    transform: scale(1.015);
+  }
+
+  .hero::after {
+    z-index: -2;
+    background-image:
+      radial-gradient(ellipse at center, rgba(5,6,12,0.18) 0%, rgba(5,6,12,0.58) 68%, rgba(5,6,12,0.88) 100%),
+      linear-gradient(180deg, rgba(5,6,12,0.08) 0%, rgba(5,6,12,0.30) 42%, rgba(5,6,12,0.88) 100%),
+      linear-gradient(rgba(0,240,255,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,0,170,0.07) 1px, transparent 1px);
+    background-size: auto, auto, 42px 42px, 42px 42px;
+  }
+
+  .hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1::before {
+    content: '';
+    position: absolute;
+    inset: -32px -52px -22px;
+    z-index: -1;
+    background: radial-gradient(ellipse at center, rgba(5,6,12,0.78), rgba(5,6,12,0.40) 42%, transparent 72%);
+    filter: blur(2px);
+  }
+
+  .hero .badge {
+    display: inline-block;
+    border: 2px solid var(--accent-y);
+    background: rgba(5,6,12,0.72);
+    color: var(--accent-y);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    padding: 10px 18px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    box-shadow: 0 0 22px rgba(255,230,0,0.22);
+    animation: flicker 3s infinite alternate;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 8vw, 96px);
+    color: #fff;
+    text-shadow:
+      0 0 8px rgba(0,240,255,0.8),
+      0 0 20px rgba(0,240,255,0.4),
+      4px 4px 0px var(--accent-m);
+    margin-bottom: 16px;
+  }
+
+  .hero .date {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(14px, 3vw, 22px);
+    color: var(--accent-c);
+    text-shadow: 0 0 10px rgba(0,240,255,0.6);
+    margin-bottom: 12px;
+  }
+
+  .hero .place {
+    font-size: 18px;
+    opacity: 0.95;
+    margin-bottom: 40px;
+    max-width: 600px;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.95);
+  }
+
+  .hero > div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-m), #b3006e);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 26px rgba(255,0,170,0.22);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 20px rgba(255,0,170,0.5);
+  }
+
+  .btn-secondary {
+    background: rgba(5,6,12,0.64);
+    color: var(--accent-c);
+    border: 2px solid var(--accent-c);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(0,240,255,0.08);
+    box-shadow: 0 0 20px rgba(0,240,255,0.3);
+  }
+
+  /* Sections */
+  section { padding: 80px 0; position: relative; }
+  section + section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-c), var(--accent-m), transparent);
+  }
+
+  h2 {
+    font-size: clamp(18px, 4vw, 28px);
+    margin-bottom: 40px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+  }
+
+  /* About */
+  .about p {
+    font-size: 18px;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 24px;
+    color: #c8c8d0;
+  }
+
+  .details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .detail-chip {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: var(--accent-y);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Program */
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .program-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+
+  .program-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-c);
+    box-shadow: 0 10px 30px rgba(0,240,255,0.08);
+  }
+
+  .program-card i {
+    font-size: 28px;
+    color: var(--accent-m);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .program-card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  .program-card p {
+    font-size: 15px;
+    color: #a0a0b0;
+  }
+
+  /* Tickets */
+  .tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: start;
+  }
+
+  .ticket {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ticket.cyan { border-top: 4px solid var(--accent-c); }
+  .ticket.magenta { border-top: 4px solid var(--accent-m); }
+
+  .ticket .tag {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .ticket.cyan .tag { color: var(--accent-c); }
+  .ticket.magenta .tag { color: var(--accent-m); }
+
+  .ticket h3 {
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+
+  .ticket ul {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .ticket ul li {
+    padding: 6px 0;
+    font-size: 15px;
+    color: #b8b8c8;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .ticket ul li:last-child { border-bottom: none; }
+
+  .price {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+    color: #fff;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .ticket.cyan .price { color: var(--accent-c); text-shadow: 0 0 10px rgba(0,240,255,0.4); }
+  .ticket.magenta .price { color: var(--accent-m); text-shadow: 0 0 10px rgba(255,0,170,0.4); }
+
+  .btn-small {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .btn-cyan {
+    background: rgba(0,240,255,0.12);
+    color: var(--accent-c);
+    border: 2px solid var(--accent-c);
+  }
+  .btn-cyan:hover {
+    background: rgba(0,240,255,0.22);
+    box-shadow: 0 0 20px rgba(0,240,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-magenta {
+    background: rgba(255,0,170,0.12);
+    color: var(--accent-m);
+    border: 2px solid var(--accent-m);
+  }
+  .btn-magenta:hover {
+    background: rgba(255,0,170,0.22);
+    box-shadow: 0 0 20px rgba(255,0,170,0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Info / deadline */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .info-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+
+  .info-card i {
+    font-size: 24px;
+    color: var(--accent-y);
+    margin-bottom: 10px;
+  }
+
+  .info-card h4 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  .info-card p { font-size: 14px; color: #a0a0b0; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #555;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer .socials {
+    margin-bottom: 16px;
+  }
+
+  footer .socials a {
+    color: var(--fg);
+    margin: 0 10px;
+    font-size: 20px;
+    text-decoration: none;
+    opacity: .6;
+    transition: opacity .2s, transform .2s;
+  }
+
+  footer .socials a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    color: var(--accent-c);
+  }
+
+  /* Animations */
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: .4; }
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      justify-content: flex-start;
+      padding: clamp(220px, 64vw, 430px) 20px 44px;
+    }
+    .hero::before {
+      background-size: 100% auto;
+      background-position: center top;
+      transform: none;
+    }
+    .hero::after {
+      background-image:
+        linear-gradient(180deg, rgba(5,6,12,0.10) 0%, rgba(5,6,12,0.18) 28vw, rgba(5,6,12,0.74) 58vw, rgba(5,6,12,0.96) 100%),
+        linear-gradient(rgba(0,240,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,170,0.07) 1px, transparent 1px);
+      background-size: auto, 42px 42px, 42px 42px;
+    }
+    .hero > div:last-child {
+      width: min(100%, 360px);
+      flex-direction: column;
+    }
+    .hero .btn-secondary { margin-left: 0; margin-top: 0; }
+    .btn { width: 100%; justify-content: center; }
+    .hero h1 { font-size: clamp(36px, 13vw, 62px); }
+    .hero h1::before { inset: -24px -24px -18px; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="badge">3-й Арт-Маркет</div>
+  <h1>Silly Market</h1>
+  <div class="date">13–14 июня 2025</div>
+  <p class="place">Дубовый Парк, Арт-галерея имени Чуйкова<br>Суббота / Воскресенье, 12:00 — 19:00</p>
+  <div>
+    <a href="#tickets" class="btn btn-primary"><i class="fa-solid fa-ticket"></i> Купить билет</a>
+    <a href="#program" class="btn btn-secondary"><i class="fa-solid fa-list"></i> Программа</a>
+  </div>
+</header>
+
+<!-- About -->
+<section class="about">
+  <div class="container">
+    <h2>О мероприятии</h2>
+    <p>
+      Третий <strong>Silly Market</strong> — это два дня атмосферы летних лагерей, загадок и немного глупостей. 
+      Авторские стенды, настольные игры, розыгрыши, арт-баттл и мастер-классы в самом сердце города.
+    </p>
+    <div class="details">
+      <span class="detail-chip"><i class="fa-solid fa-calendar-days"></i> 13–14 июня</span>
+      <span class="detail-chip"><i class="fa-solid fa-clock"></i> 12:00–19:00</span>
+      <span class="detail-chip"><i class="fa-solid fa-location-dot"></i> Дубовый Парк</span>
+    </div>
+  </div>
+</section>
+
+<!-- Program -->
+<section id="program">
+  <div class="container">
+    <h2>Программа</h2>
+    <div class="program-grid">
+      <div class="program-card">
+        <i class="fa-solid fa-palette"></i>
+        <h3>Аллея авторов</h3>
+        <p>Оригинальные работы художников, ручные изделия, принты и мерч.</p>
+      </div>
+      <div class="program-card">
+        <i class="fa-solid fa-dungeon"></i>
+        <h3>D&D-сессии</h3>
+        <p>Погружение в настольные приключения. Бросайте кубики и кричите «КРИТ!»</p>
+      </div>
+      <div class="program-card">
+        <i class="fa-solid fa-chess-board"></i>
+        <h3>Настольные игры</h3>
+        <p>Игровая зона с классическими и новыми настолками. Можно просто присоединиться.</p>
+      </div>
+      <div class="program-card">
+        <i class="fa-solid fa-gift"></i>
+        <h3>Розыгрыши призов</h3>
+        <p>Призы от участников и организаторов. Удача любит смелых.</p>
+      </div>
+      <div class="program-card">
+        <i class="fa-solid fa-spray-can"></i>
+        <h3>Арт-батл</h3>
+        <p>Живое творческое противостояние. Мarkers в руки — время творить хаос.</p>
+      </div>
+      <div class="program-card">
+        <i class="fa-solid fa-paint-brush"></i>
+        <h3>Мастер-классы</h3>
+        <p>Научитесь новому прямо на месте. От скетчинга до hand-made.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tickets -->
+<section id="tickets">
+  <div class="container">
+    <h2>Билеты</h2>
+    <div class="tickets-grid">
+      <!-- Standard -->
+      <div class="ticket cyan">
+        <span class="tag">Стандартный</span>
+        <h3>Силли Тикет</h3>
+        <span class="price">250 сом</span>
+        <ul>
+          <li>Свободный вход на маркет и во все зоны</li>
+          <li>Время посещения: 12:00–18:00</li>
+          <li>Билет на один день (суббота или воскресенье)</li>
+          <li>Можно выкупить на оба дня по отдельности</li>
+        </ul>
+        <div style="display:flex; gap:8px; flex-direction:column;">
+          <a href="https://forms.gle/qEWDXjfmzBw5nKEx7" target="_blank" class="btn-small btn-cyan">Суббота</a>
+          <a href="https://forms.gle/ZrnMAvpPPux4uRb16" target="_blank" class="btn-small btn-cyan">Воскресенье</a>
+        </div>
+      </div>
+
+      <!-- VIP -->
+      <div class="ticket magenta">
+        <span class="tag">Спешл</span>
+        <h3>ZIP ZIP Тикет</h3>
+        <span class="price">1200 сом</span>
+        <ul>
+          <li>Вход на маркет сразу на два дня</li>
+          <li>Посещение 12:00–18:00</li>
+          <li>Гифт-пакет от команды: Силли-постер, брелки, значки, акриловый стенд</li>
+          <li>Вкусняшки в комплекте</li>
+        </ul>
+        <a href="https://forms.gle/A8ZgcQZF2oVFGMVu9" target="_blank" class="btn-small btn-magenta">Купить ZIP ZIP</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Important Info -->
+<section>
+  <div class="container">
+    <h2>Важно знать</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <i class="fa-solid fa-hourglass-half"></i>
+        <h4>Дедлайн продаж</h4>
+        <p>Билеты онлайн продаются до <strong>12 июня</strong>. После — только на входе за <strong>400 сом</strong>.</p>
+      </div>
+      <div class="info-card">
+        <i class="fa-solid fa-rotate-left"></i>
+        <h4>Возврат</h4>
+        <p>Вернуть билет можно до <strong>20 мая</strong>. Успейте, если планы поменялись.</p>
+      </div>
+      <div class="info-card">
+        <i class="fa-solid fa-envelope-open-text"></i>
+        <h4>Подтверждение</h4>
+        <p>После заполнения формы вам придёт письмо. В день маркета назовите имя — мы выдадим физический билет.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location mini -->
+<section>
+  <div class="container" style="text-align:center;">
+    <h2>Место проведения</h2>
+    <p style="color:#a0a0b0; max-width:600px; margin:0 auto 16px;">
+      Дубовый Парк, Арт-галерея имени Чуйкова.<br>
+      Вход со стороны центральной аллеи.
+    </p>
+    <a href="https://2gis.kg/bishkek/search/%D0%94%D1%83%D0%B1%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%B9%20%D0%BF%D0%B0%D1%80%D0%BA" target="_blank" class="btn btn-secondary" style="margin:0;">
+      <i class="fa-solid fa-map-location-dot"></i> Открыть на карте
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="socials">
+    <a href="#" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" title="VK"><i class="fa-brands fa-vk"></i></a>
+  </div>
+  <p>© Silly Market. С нетерпением ждём всех 13–14 июня!</p>
+</footer>
+
+</body>
+</html>
