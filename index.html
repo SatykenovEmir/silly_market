@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silly Market — Арт-маркет 13–14 июня</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -15,12 +17,15 @@
     --accent-y: #ffe600;
     --glass: rgba(255,255,255,0.06);
     --border: rgba(255,255,255,0.12);
-    --hero-image: url("IMG_6132.PNG");
+    --hero-image: url("silly-market-bg.jpg");
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
   body {
     font-family: 'Inter', sans-serif;
@@ -59,6 +64,7 @@
   .hero {
     min-height: 100vh;
     min-height: 100svh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +73,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: clamp(76px, 11vh, 132px) 20px clamp(70px, 10vh, 118px);
+    padding: calc(clamp(76px, 11vh, 132px) + env(safe-area-inset-top)) 20px clamp(70px, 10vh, 118px);
     background: #05060c;
   }
 
@@ -83,20 +89,21 @@
     z-index: -3;
     background-image: var(--hero-image);
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
     background-repeat: no-repeat;
-    filter: saturate(1.08) contrast(1.06);
-    transform: scale(1.015);
+    filter: saturate(1.06) contrast(1.06);
+    transform: scale(1.012);
   }
 
   .hero::after {
     z-index: -2;
     background-image:
-      radial-gradient(ellipse at center, rgba(5,6,12,0.18) 0%, rgba(5,6,12,0.58) 68%, rgba(5,6,12,0.88) 100%),
-      linear-gradient(180deg, rgba(5,6,12,0.08) 0%, rgba(5,6,12,0.30) 42%, rgba(5,6,12,0.88) 100%),
+      radial-gradient(ellipse at center, rgba(5,6,12,0.10) 0%, rgba(5,6,12,0.48) 66%, rgba(5,6,12,0.90) 100%),
+      linear-gradient(90deg, rgba(5,6,12,0.58) 0%, rgba(5,6,12,0.20) 28%, rgba(5,6,12,0.24) 68%, rgba(5,6,12,0.62) 100%),
+      linear-gradient(180deg, rgba(5,6,12,0.16) 0%, rgba(5,6,12,0.22) 42%, rgba(5,6,12,0.92) 100%),
       linear-gradient(rgba(0,240,255,0.08) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,0,170,0.07) 1px, transparent 1px);
-    background-size: auto, auto, 42px 42px, 42px 42px;
+    background-size: auto, auto, auto, 42px 42px, 42px 42px;
   }
 
   .hero > * {
@@ -129,13 +136,19 @@
   }
 
   .hero h1 {
-    font-size: clamp(40px, 8vw, 96px);
+    max-width: min(100%, 1080px);
+    font-size: clamp(42px, 5.4vw, 74px);
     color: #fff;
+    white-space: nowrap;
     text-shadow:
       0 0 8px rgba(0,240,255,0.8),
       0 0 20px rgba(0,240,255,0.4),
       4px 4px 0px var(--accent-m);
     margin-bottom: 16px;
+  }
+
+  .hero h1 span {
+    display: inline-block;
   }
 
   .hero .date {
@@ -449,10 +462,18 @@
     20%, 24%, 55% { opacity: .4; }
   }
 
+  @media (max-width: 900px) {
+    .hero h1 {
+      font-size: clamp(34px, 9.4vw, 68px);
+    }
+  }
+
   @media (max-width: 760px) {
     .hero {
       justify-content: flex-start;
-      padding: clamp(220px, 64vw, 430px) 20px 44px;
+      min-height: 100svh;
+      min-height: 100dvh;
+      padding: calc(clamp(220px, 64vw, 430px) + env(safe-area-inset-top)) 20px calc(44px + env(safe-area-inset-bottom));
     }
     .hero::before {
       background-size: 100% auto;
@@ -472,9 +493,54 @@
     }
     .hero .btn-secondary { margin-left: 0; margin-top: 0; }
     .btn { width: 100%; justify-content: center; }
-    .hero h1 { font-size: clamp(36px, 13vw, 62px); }
+    .hero h1 {
+      font-size: clamp(32px, 12vw, 56px);
+      white-space: normal;
+      text-shadow:
+        0 0 8px rgba(0,240,255,0.84),
+        0 0 18px rgba(0,240,255,0.42),
+        3px 3px 0px var(--accent-m);
+    }
+    .hero h1 span {
+      display: block;
+    }
     .hero h1::before { inset: -24px -24px -18px; }
+    .hero .badge {
+      font-size: 8px;
+      padding: 8px 12px;
+      margin-bottom: 18px;
+    }
+    .hero .date {
+      font-size: clamp(11px, 4vw, 16px);
+      margin-bottom: 10px;
+    }
+    .hero .place {
+      font-size: 14px;
+      max-width: 360px;
+      margin-bottom: 28px;
+    }
+    .btn {
+      min-height: 48px;
+      padding: 14px 18px;
+      font-size: 10px;
+    }
     section { padding: 60px 0; }
+  }
+
+  @media (max-width: 390px) {
+    .hero {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 11.2vw, 42px);
+    }
+    .hero .place {
+      font-size: 13px;
+    }
+    .container {
+      padding: 0 16px;
+    }
   }
 </style>
 </head>
@@ -483,7 +549,7 @@
 <!-- Hero -->
 <header class="hero" id="top">
   <div class="badge">3-й Арт-Маркет</div>
-  <h1>Silly Market</h1>
+  <h1><span>Silly</span> <span>Market</span></h1>
   <div class="date">13–14 июня 2025</div>
   <p class="place">Дубовый Парк, Арт-галерея имени Чуйкова<br>Суббота / Воскресенье, 12:00 — 19:00</p>
   <div>
@@ -536,7 +602,7 @@
       <div class="program-card">
         <i class="fa-solid fa-spray-can"></i>
         <h3>Арт-батл</h3>
-        <p>Живое творческое противостояние. Мarkers в руки — время творить хаос.</p>
+        <p>Живое творческое противостояние. Маркеры в руки — время творить хаос.</p>
       </div>
       <div class="program-card">
         <i class="fa-solid fa-paint-brush"></i>
